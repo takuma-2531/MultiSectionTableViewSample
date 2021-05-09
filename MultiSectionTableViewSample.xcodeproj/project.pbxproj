@@ -15,6 +15,7 @@
 		2691C08B2647653F00631AEC /* MultiSectionTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2691C08A2647653F00631AEC /* MultiSectionTableView.storyboard */; };
 		2691C08E2647676600631AEC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2691C08C2647676600631AEC /* TableViewCell.swift */; };
 		2691C08F2647676600631AEC /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2691C08D2647676600631AEC /* TableViewCell.xib */; };
+		2691C091264777F700631AEC /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2691C090264777F700631AEC /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		2691C08A2647653F00631AEC /* MultiSectionTableView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MultiSectionTableView.storyboard; sourceTree = "<group>"; };
 		2691C08C2647676600631AEC /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		2691C08D2647676600631AEC /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		2691C090264777F700631AEC /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,15 +64,40 @@
 			children = (
 				2691C0762647650200631AEC /* AppDelegate.swift */,
 				2691C0782647650200631AEC /* SceneDelegate.swift */,
-				2691C07A2647650200631AEC /* MultiSectionTableViewController.swift */,
-				2691C08A2647653F00631AEC /* MultiSectionTableView.storyboard */,
-				2691C08C2647676600631AEC /* TableViewCell.swift */,
-				2691C08D2647676600631AEC /* TableViewCell.xib */,
+				2691C092264777FE00631AEC /* Models */,
+				2691C0932647780D00631AEC /* Views */,
+				2691C0942647781800631AEC /* Controllers */,
 				2691C07F2647650300631AEC /* Assets.xcassets */,
 				2691C0812647650300631AEC /* LaunchScreen.storyboard */,
 				2691C0842647650300631AEC /* Info.plist */,
 			);
 			path = MultiSectionTableViewSample;
+			sourceTree = "<group>";
+		};
+		2691C092264777FE00631AEC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2691C090264777F700631AEC /* Item.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2691C0932647780D00631AEC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2691C08A2647653F00631AEC /* MultiSectionTableView.storyboard */,
+				2691C08C2647676600631AEC /* TableViewCell.swift */,
+				2691C08D2647676600631AEC /* TableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2691C0942647781800631AEC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2691C07A2647650200631AEC /* MultiSectionTableViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2691C091264777F700631AEC /* Item.swift in Sources */,
 				2691C07B2647650200631AEC /* MultiSectionTableViewController.swift in Sources */,
 				2691C08E2647676600631AEC /* TableViewCell.swift in Sources */,
 				2691C0772647650200631AEC /* AppDelegate.swift in Sources */,
