@@ -23,6 +23,9 @@ final class MultiSectionTableViewController: UIViewController {
         tableView.register(TableViewCell.nib, forCellReuseIdentifier: TableViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.dragDelegate = self
+        tableView.dropDelegate = self
+        tableView.dragInteractionEnabled = true
         
         pickerView.dataSource = self
         pickerView.delegate = self
@@ -30,6 +33,11 @@ final class MultiSectionTableViewController: UIViewController {
         addButtonIsEnabled()
         
         addButton.isEnabled = false
+        
+        // 仮入力
+        items.mySections = ["one", "two"]
+        items.twoDimArray = [["11", "12"],
+                             ["21", "22", "23"]]
 
     }
     
@@ -130,6 +138,47 @@ extension MultiSectionTableViewController: UITableViewDelegate {
     }
     
 }
+// MARK: - UITableViewDragDelegate
+extension MultiSectionTableViewController: UITableViewDragDelegate {
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let cellName = items.twoDimArray[indexPath.section][indexPath.row]
+        let itemPrivider = NSItemProvider(object: cellName as NSString)
+        return [UIDragItem(itemProvider: itemPrivider)]
+    }
+    
+    
+}
+
+// MARK: - UITableViewDropDelegate
+extension MultiSectionTableViewController: UITableViewDropDelegate {
+    
+    func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
+        return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
+        guard let item = coordinator.items.first,
+              let destinationIndexPath = coordinator.destinationIndexPath,
+              let sourceIndexPath = item.sourceIndexPath else {
+            return
+        }
+        
+        tableView.performBatchUpdates { [weak self] in
+            guard let strongSelf = self else { return }
+            // 命名。。task?
+            let task = strongSelf.items.twoDimArray[sourceIndexPath.section].remove(at: sourceIndexPath.row)
+            items.twoDimArray[destinationIndexPath.section].insert(task, at: destinationIndexPath.row)
+            
+            tableView.deleteRows(at: [sourceIndexPath], with: .automatic)
+            tableView.insertRows(at: [destinationIndexPath], with: .automatic)
+        } completion: { _ in
+            tableView.reloadData()
+        }
+        coordinator.drop(item.dragItem, toRowAt: destinationIndexPath)
+    }
+    
+}
+
 // MARK: - UIPickerViewDataSource
 extension MultiSectionTableViewController: UIPickerViewDataSource {
     // 列数
@@ -146,14 +195,24 @@ extension MultiSectionTableViewController: UIPickerViewDataSource {
 // MARK: - UIPickerViewDelegate
 extension MultiSectionTableViewController: UIPickerViewDelegate {
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return items.mySections[row]
-    }
+    // viewForRowを使うとこれは必要なくなる
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        return items.mySections[row]
+//    }
     
+    // 選択したpickerの行番号の取得
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerRow = row
     }
     
+    // pickerの文字サイズを変更するにはこれを使うしかなさげ
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label = (view as? UILabel) ?? UILabel()
+        label.text = items.mySections[row]
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 20)
+        return label
+    }
     
 }
 
