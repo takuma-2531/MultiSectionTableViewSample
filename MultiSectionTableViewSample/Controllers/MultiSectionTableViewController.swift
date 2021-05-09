@@ -35,7 +35,8 @@ class MultiSectionTableViewController: UIViewController {
     }
     
     @IBAction func tapAddSection(_ sender: UIBarButtonItem) {
-        items.mySections.append("section")
+        
+        showAlert()
         items.twoDimArray.append([])
         
         if 0 < items.mySections.count {
@@ -56,6 +57,33 @@ class MultiSectionTableViewController: UIViewController {
         pickerView.reloadAllComponents()
     }
     
+    func showAlert() {
+        let alert = UIAlertController(title: "Section追加", message: nil, preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.clearButtonMode = UITextField.ViewMode.whileEditing
+            textField.placeholder = "Section名入力"
+        }
+        
+        let action = UIAlertAction(title: "OK", style: .default) { alertAction in
+            if let text = alert.textFields![0].text {
+                if text.count != 0 {
+                    self.addSection(sectionName: text)
+                    self.reloadView()
+                }
+            }
+        }
+        
+        let cancel = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+        
+        alert.addAction(action)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    func addSection(sectionName: String) {
+        items.mySections.append(sectionName)
+    }
 
 }
 
