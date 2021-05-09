@@ -9,8 +9,6 @@ import UIKit
 
 class MultiSectionTableViewController: UIViewController {
     
-    var a = ["a", "b", "c", "d"]
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addTextField: UITextField!
     @IBOutlet weak var addButton: UIButton!
@@ -31,18 +29,23 @@ class MultiSectionTableViewController: UIViewController {
         if items.mySections.count == 0 {
             addButton.isEnabled = false
         }
+        
+        addButton.isEnabled = false
 
     }
     
+    @IBAction func addTextFieldEditing(_ sender: UITextField) {
+        if 0 < sender.text!.count &&
+            0 < items.mySections.count {
+            addButton.isEnabled = true
+        } else {
+            addButton.isEnabled = false
+        }
+    }
+    
     @IBAction func tapAddSection(_ sender: UIBarButtonItem) {
-        
         showAlert()
         items.twoDimArray.append([])
-        
-        if 0 < items.mySections.count {
-            addButton.isEnabled = true
-        }
-        
         reloadView()
     }
     

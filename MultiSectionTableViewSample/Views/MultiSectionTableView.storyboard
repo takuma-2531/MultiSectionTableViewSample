@@ -24,6 +24,9 @@
                                 <rect key="frame" x="20" y="111" width="336" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="addTextFieldEditing:" destination="Y6W-OH-hqX" eventType="editingChanged" id="Plb-tP-l9e"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWX-Qd-SeM">
                                 <rect key="frame" x="364" y="113" width="30" height="30"/>
