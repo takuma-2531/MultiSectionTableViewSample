@@ -17,21 +17,58 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yyv-fD-BBh">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="241" width="414" height="621"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2zD-6k-v00">
+                                <rect key="frame" x="20" y="111" width="336" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWX-Qd-SeM">
+                                <rect key="frame" x="364" y="113" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="yuD-Oh-k5o"/>
+                                </constraints>
+                                <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="tapAddButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="RCo-qq-ZVZ"/>
+                                </connections>
+                            </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnF-Gz-p6C">
+                                <rect key="frame" x="0.0" y="153" width="414" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="GeH-Gn-Rt5"/>
+                                </constraints>
+                            </pickerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="2zD-6k-v00" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="1tY-y2-Cy3"/>
+                            <constraint firstItem="fnF-Gz-p6C" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="KBT-PJ-jFd"/>
+                            <constraint firstItem="fnF-Gz-p6C" firstAttribute="top" secondItem="2zD-6k-v00" secondAttribute="bottom" constant="8" id="Md7-0K-FgS"/>
+                            <constraint firstItem="hWX-Qd-SeM" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="25" id="OMp-sW-qHs"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="hWX-Qd-SeM" secondAttribute="trailing" constant="20" id="Zh8-1R-CFC"/>
+                            <constraint firstItem="Yyv-fD-BBh" firstAttribute="top" secondItem="fnF-Gz-p6C" secondAttribute="bottom" constant="8" id="bNv-Wc-FC2"/>
                             <constraint firstItem="Yyv-fD-BBh" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="eP7-pC-NT3"/>
+                            <constraint firstItem="hWX-Qd-SeM" firstAttribute="leading" secondItem="2zD-6k-v00" secondAttribute="trailing" constant="8" id="fVB-af-gfd"/>
                             <constraint firstItem="Yyv-fD-BBh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ikG-qf-8AL"/>
-                            <constraint firstItem="Yyv-fD-BBh" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="wA8-U0-9Ch"/>
+                            <constraint firstItem="fnF-Gz-p6C" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="n6x-2J-feA"/>
                             <constraint firstItem="Yyv-fD-BBh" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="x7H-mj-2ar"/>
+                            <constraint firstItem="2zD-6k-v00" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="23" id="ycn-hU-cjK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="cKA-Zk-Z4B"/>
+                    <navigationItem key="navigationItem" id="cKA-Zk-Z4B">
+                        <barButtonItem key="rightBarButtonItem" title="Add section" id="7xq-r5-nLI">
+                            <connections>
+                                <action selector="tapAddSection:" destination="Y6W-OH-hqX" id="yk0-aj-7gP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="addTextField" destination="2zD-6k-v00" id="Prt-ro-Gaq"/>
+                        <outlet property="pickerView" destination="fnF-Gz-p6C" id="wzs-UT-HCF"/>
                         <outlet property="tableView" destination="Yyv-fD-BBh" id="cNf-1e-tbr"/>
                     </connections>
                 </viewController>

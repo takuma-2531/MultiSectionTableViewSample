@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct Items {
+    var mySections = [String]()
+    var twoDimArray = [[String]]()
+    
+}

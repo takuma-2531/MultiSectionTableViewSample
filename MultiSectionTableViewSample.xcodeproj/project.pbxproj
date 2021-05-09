@@ -86,8 +86,8 @@
 			isa = PBXGroup;
 			children = (
 				2691C08A2647653F00631AEC /* MultiSectionTableView.storyboard */,
-				2691C08C2647676600631AEC /* TableViewCell.swift */,
 				2691C08D2647676600631AEC /* TableViewCell.xib */,
+				2691C08C2647676600631AEC /* TableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

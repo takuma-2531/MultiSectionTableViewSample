@@ -9,12 +9,13 @@ import UIKit
 
 class MultiSectionTableViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    var a = ["a", "b", "c", "d"]
     
-    var mySections = [String]()
-    var twoDimArray = [[String]]()
-    var selectedClass = ""
-    var selectedPerson = ""
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addTextField: UITextField!
+    @IBOutlet weak var pickerView: UIPickerView!
+    
+    var items = Items()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,37 +24,50 @@ class MultiSectionTableViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        mySections = ["A", "B", "C"]
-        
-        for _ in 0...mySections.count {
-            twoDimArray.append([])
-        }
-        
-        twoDimArray[0] = ["あ", "い", "う"]
-        twoDimArray[1] = ["え", "お"]
-        twoDimArray[2] = ["か", "き", "く"]
-        
-        
+        pickerView.dataSource = self
+        pickerView.delegate = self
+
     }
+    
+    @IBAction func tapAddSection(_ sender: UIBarButtonItem) {
+        items.mySections.append("section")
+        items.twoDimArray.append([])
+        reloadView()
+    }
+    
+    @IBAction func tapAddButton(_ sender: UIButton) {
+        let sectionNumber = items.mySections.count - 1
+        if 0 <= sectionNumber {
+            items.twoDimArray[sectionNumber].append(addTextField.text!)
+        }
+        addTextField.text = ""
+        reloadView()
+    }
+    
+    func reloadView() {
+        tableView.reloadData()
+        pickerView.reloadAllComponents()
+    }
+    
 
 }
 
 extension MultiSectionTableViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return mySections.count
+        return items.mySections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return twoDimArray[section].count
+        return items.twoDimArray[section].count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        mySections[section]
+        return items.mySections[section]
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier, for: indexPath) as! TableViewCell
-        cell.nameLabel.text = twoDimArray[indexPath.section][indexPath.row]
+        cell.nameLabel.text = items.twoDimArray[indexPath.section][indexPath.row]
         return cell
     }
     
@@ -62,12 +76,32 @@ extension MultiSectionTableViewController: UITableViewDataSource {
 
 extension MultiSectionTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            selectedClass = mySections[indexPath.section]
-            selectedPerson = twoDimArray[indexPath.section][indexPath.row]
-            
-            print(selectedClass + "の" + selectedPerson + "さん")
-        }
+        let sectionName = items.mySections[indexPath.section]
+        let cellName = items.twoDimArray[indexPath.section][indexPath.row]
         
+        print(sectionName + "の" + cellName + "さん")
+    }
+    
+}
+
+extension MultiSectionTableViewController: UIPickerViewDataSource {
+    // 列数
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // 行数
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return items.mySections.count
+    }
+    
+}
+
+extension MultiSectionTableViewController: UIPickerViewDelegate {
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return items.mySections[row]
+    }
 }
 
 
