@@ -52,6 +52,10 @@ class MultiSectionTableViewController: UIViewController {
         reloadView()
     }
     
+
+}
+
+extension MultiSectionTableViewController {
     func reloadView() {
         tableView.reloadData()
         pickerView.reloadAllComponents()
@@ -84,7 +88,6 @@ class MultiSectionTableViewController: UIViewController {
     func addSection(sectionName: String) {
         items.mySections.append(sectionName)
     }
-
 }
 
 extension MultiSectionTableViewController: UITableViewDataSource {
