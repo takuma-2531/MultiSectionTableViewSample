@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yyv-fD-BBh">
-                                <rect key="frame" x="0.0" y="241" width="414" height="621"/>
+                                <rect key="frame" x="0.0" y="235" width="414" height="627"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2zD-6k-v00">
@@ -38,8 +38,17 @@
                                     <action selector="tapAddButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="RCo-qq-ZVZ"/>
                                 </connections>
                             </button>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnF-Gz-p6C">
-                                <rect key="frame" x="0.0" y="153" width="414" height="80"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dd-NU-T1K">
+                                <rect key="frame" x="20" y="160" width="76.5" height="54"/>
+                                <string key="text">追加する
+セクション
+を選択</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="fnF-Gz-p6C">
+                                <rect key="frame" x="104.5" y="147" width="309.5" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="GeH-Gn-Rt5"/>
                                 </constraints>
@@ -49,15 +58,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="2zD-6k-v00" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="1tY-y2-Cy3"/>
-                            <constraint firstItem="fnF-Gz-p6C" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="KBT-PJ-jFd"/>
-                            <constraint firstItem="fnF-Gz-p6C" firstAttribute="top" secondItem="2zD-6k-v00" secondAttribute="bottom" constant="8" id="Md7-0K-FgS"/>
+                            <constraint firstItem="2dd-NU-T1K" firstAttribute="top" secondItem="2zD-6k-v00" secondAttribute="bottom" constant="15" id="M4I-iI-rY2"/>
                             <constraint firstItem="hWX-Qd-SeM" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="25" id="OMp-sW-qHs"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="hWX-Qd-SeM" secondAttribute="trailing" constant="20" id="Zh8-1R-CFC"/>
                             <constraint firstItem="Yyv-fD-BBh" firstAttribute="top" secondItem="fnF-Gz-p6C" secondAttribute="bottom" constant="8" id="bNv-Wc-FC2"/>
+                            <constraint firstItem="2dd-NU-T1K" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="eDH-gj-NSF"/>
                             <constraint firstItem="Yyv-fD-BBh" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="eP7-pC-NT3"/>
                             <constraint firstItem="hWX-Qd-SeM" firstAttribute="leading" secondItem="2zD-6k-v00" secondAttribute="trailing" constant="8" id="fVB-af-gfd"/>
                             <constraint firstItem="Yyv-fD-BBh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ikG-qf-8AL"/>
                             <constraint firstItem="fnF-Gz-p6C" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="n6x-2J-feA"/>
+                            <constraint firstItem="fnF-Gz-p6C" firstAttribute="centerY" secondItem="2dd-NU-T1K" secondAttribute="centerY" id="nI0-ZL-Tyt"/>
+                            <constraint firstItem="fnF-Gz-p6C" firstAttribute="leading" secondItem="2dd-NU-T1K" secondAttribute="trailing" constant="8" id="sVl-Ox-5Hr"/>
+                            <constraint firstItem="fnF-Gz-p6C" firstAttribute="top" secondItem="2zD-6k-v00" secondAttribute="bottom" constant="2" id="vVn-2q-mG7"/>
                             <constraint firstItem="Yyv-fD-BBh" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="x7H-mj-2ar"/>
                             <constraint firstItem="2zD-6k-v00" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="23" id="ycn-hU-cjK"/>
                         </constraints>

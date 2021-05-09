@@ -7,14 +7,15 @@
 
 import UIKit
 
-class MultiSectionTableViewController: UIViewController {
+final class MultiSectionTableViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var addTextField: UITextField!
-    @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak private var tableView: UITableView!
+    @IBOutlet weak private var addTextField: UITextField!
+    @IBOutlet weak private var addButton: UIButton!
+    @IBOutlet weak private var pickerView: UIPickerView!
     
-    var items = Items()
+    private var items = Items()
+    private var pickerRow = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,21 +27,14 @@ class MultiSectionTableViewController: UIViewController {
         pickerView.dataSource = self
         pickerView.delegate = self
         
-        if items.mySections.count == 0 {
-            addButton.isEnabled = false
-        }
+        addButtonIsEnabled()
         
         addButton.isEnabled = false
 
     }
     
     @IBAction func addTextFieldEditing(_ sender: UITextField) {
-        if 0 < sender.text!.count &&
-            0 < items.mySections.count {
-            addButton.isEnabled = true
-        } else {
-            addButton.isEnabled = false
-        }
+        addButtonIsEnabled()
     }
     
     @IBAction func tapAddSection(_ sender: UIBarButtonItem) {
@@ -50,18 +44,29 @@ class MultiSectionTableViewController: UIViewController {
     }
     
     @IBAction func tapAddButton(_ sender: UIButton) {
-        items.twoDimArray[items.mySections.count - 1].append(addTextField.text!)
+        items.twoDimArray[pickerRow].append(addTextField.text!)
         addTextField.text = ""
+        addButtonIsEnabled()
         reloadView()
     }
     
 
 }
-
+// MARK: - function
 extension MultiSectionTableViewController {
     func reloadView() {
         tableView.reloadData()
         pickerView.reloadAllComponents()
+    }
+    
+    // 命名法検討
+    func addButtonIsEnabled() {
+        if 0 < addTextField.text!.count &&
+            0 < items.mySections.count {
+            addButton.isEnabled = true
+        } else {
+            addButton.isEnabled = false
+        }
     }
     
     func showAlert() {
@@ -93,6 +98,7 @@ extension MultiSectionTableViewController {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension MultiSectionTableViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return items.mySections.count
@@ -114,7 +120,7 @@ extension MultiSectionTableViewController: UITableViewDataSource {
     
     
 }
-
+// MARK: - UITableViewDelegate
 extension MultiSectionTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sectionName = items.mySections[indexPath.section]
@@ -124,7 +130,7 @@ extension MultiSectionTableViewController: UITableViewDelegate {
     }
     
 }
-
+// MARK: - UIPickerViewDataSource
 extension MultiSectionTableViewController: UIPickerViewDataSource {
     // 列数
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -137,12 +143,18 @@ extension MultiSectionTableViewController: UIPickerViewDataSource {
     }
     
 }
-
+// MARK: - UIPickerViewDelegate
 extension MultiSectionTableViewController: UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return items.mySections[row]
     }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        pickerRow = row
+    }
+    
+    
 }
 
 
