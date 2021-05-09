@@ -36,8 +36,8 @@ final class MultiSectionTableViewController: UIViewController {
         
         // 仮入力
         items.mySections = ["one", "two"]
-        items.twoDimArray = [["11", "12"],
-                             ["21", "22", "23"]]
+        items.twoDimArray = [["apple", "lemon"],
+                             ["りんご", "れもん", "ばなな"]]
 
     }
     
