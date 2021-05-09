@@ -67,6 +67,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="hWX-Qd-SeM" id="Tng-Gn-Ie1"/>
                         <outlet property="addTextField" destination="2zD-6k-v00" id="Prt-ro-Gaq"/>
                         <outlet property="pickerView" destination="fnF-Gz-p6C" id="wzs-UT-HCF"/>
                         <outlet property="tableView" destination="Yyv-fD-BBh" id="cNf-1e-tbr"/>

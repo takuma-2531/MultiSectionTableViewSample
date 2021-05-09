@@ -13,6 +13,7 @@ class MultiSectionTableViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addTextField: UITextField!
+    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var pickerView: UIPickerView!
     
     var items = Items()
@@ -26,20 +27,26 @@ class MultiSectionTableViewController: UIViewController {
         
         pickerView.dataSource = self
         pickerView.delegate = self
+        
+        if items.mySections.count == 0 {
+            addButton.isEnabled = false
+        }
 
     }
     
     @IBAction func tapAddSection(_ sender: UIBarButtonItem) {
         items.mySections.append("section")
         items.twoDimArray.append([])
+        
+        if 0 < items.mySections.count {
+            addButton.isEnabled = true
+        }
+        
         reloadView()
     }
     
     @IBAction func tapAddButton(_ sender: UIButton) {
-        let sectionNumber = items.mySections.count - 1
-        if 0 <= sectionNumber {
-            items.twoDimArray[sectionNumber].append(addTextField.text!)
-        }
+        items.twoDimArray[items.mySections.count - 1].append(addTextField.text!)
         addTextField.text = ""
         reloadView()
     }
